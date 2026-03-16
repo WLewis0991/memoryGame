@@ -15,7 +15,13 @@ function App() {
       const card = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${Math.floor(Math.random() * 500)}.png`;
       cards.push(card);
     }
-    setGameCards(cards);
+    const finalCards = cards.map((value, index) => ({
+      id: index,
+      value,
+      isflipped: false,
+      isMatched: false
+    }))
+    setGameCards(finalCards)
 
   }
 

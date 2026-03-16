@@ -19,7 +19,7 @@ export default function Cards(props) {
     return (
         <div className="card" onClick={addAttempt}>
             <div className="card-front">
-                <img className="card-image" src={card} alt="" />
+                <img className="card-image" src={card.value} alt="" />
             </div>
             <div className="card-back"></div>
 
