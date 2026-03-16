@@ -28,14 +28,24 @@ export default function Cards(props) {
         }
 
     }
+return (
+  <div
+    className={`card ${card.isFlipped ? "flipped" : ""}`}
+    onClick={addAttempt}
+  >
+    <div className="card-inner">
 
-    return (
-        <div className={`card ${card.isFlipped ? "flipped" : "" }`} onClick={addAttempt}>
-            <div className="card-front">
-                <img className="card-image" src={card.value} alt="" />
-            </div>
-            <div className="card-back"></div>
+      <div className="card-front">
+        <img
+          className="card-image"
+          src={card.value}
+          alt=""
+        />
+      </div>
 
-        </div>
-    );
+      <div className="card-back"></div>
+
+    </div>
+  </div>
+);
 }
