@@ -39,7 +39,7 @@ function App() {
       <Scoreboard tries={tries} setTries={setTries}/>
       <div className='card-grid'>
         {gameCards.map((card, index) =>
-          <Cards card={card} key={index} attempts={attempts} setAttempts={setAttempts} setTries={setTries}/>
+          <Cards card={card} key={index} attempts={attempts} setAttempts={setAttempts} setTries={setTries} gameCards={gameCards} setGameCards={setGameCards}/>
         )}
       </div>
     </div>

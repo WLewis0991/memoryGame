@@ -1,8 +1,21 @@
 export default function Cards(props) {
 
-    const { card, attempts, setAttempts, setTries } = props;
+    const { card, gameCards, setGameCards, attempts, setAttempts, setTries } = props;
 
     function addAttempt() {
+        if(card.isFlipped || card.isMatched){
+            return
+        }
+        const newCards = gameCards.map((c) => {
+            if (c.id === card.id){
+                return {...c, isFlipped:true};
+            }else {
+                return c;
+            }
+
+        });
+        setGameCards(newCards)
+        console.log(card)
 
         if (attempts.includes(card)) {
             setAttempts([]),
@@ -17,7 +30,7 @@ export default function Cards(props) {
     }
 
     return (
-        <div className="card" onClick={addAttempt}>
+        <div className={`card ${card.isFlipped ? "flipped" : "" }`} onClick={addAttempt}>
             <div className="card-front">
                 <img className="card-image" src={card.value} alt="" />
             </div>
