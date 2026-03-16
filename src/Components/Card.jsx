@@ -1,45 +1,52 @@
 export default function Cards(props) {
 
     const { card, gameCards, setGameCards, attempts, setAttempts, setTries } = props;
+function addAttempt() {
+  // Ignore clicks on flipped or matched cards
+  if (card.isFlipped || card.isMatched) return;
 
-    function addAttempt() {
-        if(card.isFlipped || card.isMatched){
-            return
-        }
-        if (attempts.length == 2){
-            const flippedCards = gameCards.map((c)=> {
-                if( c.isFlipped){
-                    c.isFlipped = false
-                }
-            })
-            setGameCards(flippedCards)
-            setAttempts([])
-        }
-        const newCards = gameCards.map((c) => {
-            if (c.id === card.id){
-                return {...c, isFlipped:true};
-            }else {
-                return c;
-            }
+  let newCards = [...gameCards];
 
-        });
-        setGameCards(newCards)
-        console.log(card)
+  // Flip the clicked card
+  newCards = newCards.map(c =>
+    c.id === card.id ? { ...c, isFlipped: true } : c
+  );
 
-        if (attempts.includes(card)) {
-            setAttempts([]),
-            setTries(0)
-            console.log("tried that");
-        } else {
-            setAttempts(a => [...a, card]);
-            setTries(t=> t + 1)
-            console.log(attempts)
-        }
+  // Update attempts
+  let newAttempts = [...attempts, card];
 
+  // Check for a match if this is the second card
+  if (newAttempts.length === 2) {
+    const [first, second] = newAttempts;
+    if (first.value === second.value) {
+      // Mark both cards as matched
+      newCards = newCards.map(c =>
+        c.value === first.value ? { ...c, isMatched: true } : c
+      );
+    } else {
+      // Not matched: flip back after a short delay
+      setTimeout(() => {
+        setGameCards(prev =>
+          prev.map(c =>
+            c.isFlipped && !c.isMatched ? { ...c, isFlipped: false } : c
+          )
+        );
+      }, 1000);
     }
+    newAttempts = [];
+    setTries(t => t + 1);
+  } else {
+    // First attempt, just increment tries
+    setTries(t => t + 1);
+  }
+
+  // Commit state updates
+  setGameCards(newCards);
+  setAttempts(newAttempts);
+}
 return (
   <div
-    className={`card ${card.isFlipped ? "flipped" : ""}`}
+    className={`card ${card.isFlipped || card.isMatched ? "flipped" : ""}`}
     onClick={addAttempt}
   >
     <div className="card-inner">
