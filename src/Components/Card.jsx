@@ -6,6 +6,15 @@ export default function Cards(props) {
         if(card.isFlipped || card.isMatched){
             return
         }
+        if (attempts.length == 2){
+            const flippedCards = gameCards.map((c)=> {
+                if( c.isFlipped){
+                    c.isFlipped = false
+                }
+            })
+            setGameCards(flippedCards)
+            setAttempts([])
+        }
         const newCards = gameCards.map((c) => {
             if (c.id === card.id){
                 return {...c, isFlipped:true};
