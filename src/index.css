@@ -1,0 +1,64 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.game-container{
+  background: url("./assets/16-bit-forrest.png");
+    background-repeat: no-repeat;           /* Prevent the image from repeating */
+  background-size: cover;                 /* Scale the image to cover the entire container */
+  background-position: center;            /* Center the image */
+  background-attachment: fixed;           /* Fix the image in place during scrolling for a parallax effect */
+  min-height: 100vh;                          
+
+}
+
+.card-grid{
+  display: grid;
+  place-items: center;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.card{
+  position: relative;
+
+  padding: 0;
+  display: flex;
+  width: 100px;
+  height: 200px;
+  border: 2px solid black;
+  align-items: center;
+}
+
+.card-front{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    background-image: url("./assets/Front.png");
+      background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: local;
+  width: 100px;
+  height: 200px;
+}
+
+.card-image{
+  width: 70px;
+}
+.card-back{
+  width: 100px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url("./assets/back.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: local;
+}
+.card.flipped .card-back{
+  opacity: 0;
+}
