@@ -1,72 +1,89 @@
-*{
+* {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
-.game-container{
-  background: url("./assets/16-bit-forrest.png");
-    background-repeat: no-repeat;           /* Prevent the image from repeating */
-  background-size: cover;                 /* Scale the image to cover the entire container */
-  background-position: center;            /* Center the image */
-  background-attachment: fixed;           /* Fix the image in place during scrolling for a parallax effect */
-  min-height: 100vh;                          
-
+.game-container {
+  background: url("./assets/16-bit-forrest.png") no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vw;
 }
 
-.card-grid{
+.card-grid {
   display: grid;
-  place-items: center;
+  gap: 2vw;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(20vw, 1fr)); /* default: 3+ cards */
+  justify-items: center;
 }
 
-.card{
-  width:100px;
-  height:200px;
-  perspective:1000px;
+.card {
+  width: 20vw;               /* scales with viewport */
+  height: calc(20vw * 2);    /* maintain 1:2 aspect ratio */
+  max-width: 150px;           /* optional max size on large screens */
+  max-height: 300px;
+  perspective: 1000px;
 }
 
-.card-inner{
-  position:relative;
-  width:100%;
-  height:100%;
-  transition:transform 0.6s;
-  transform-style:preserve-3d;
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
-/* Flip when state changes */
-.card.flipped .card-inner{
-  transform:rotateY(180deg);
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
 }
 
 .card-front,
-.card-back{
-  position:absolute;
-  width:100%;
-  height:100%;
-  backface-visibility:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* FRONT starts hidden */
-.card-front{
-  transform:rotateY(180deg);
-  background-image:url("./assets/Front.png");
-  background-size:contain;
-  background-repeat:no-repeat;
-  background-position:center;
+.card-front {
+  transform: rotateY(180deg);
+  background-image: url("./assets/Front.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* BACK is visible by default */
-.card-back{
-  background-image:url("./assets/back.png");
-  background-size:contain;
-  background-repeat:no-repeat;
-  background-position:center;
+.card-back {
+  background-image: url("./assets/back.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.card-image{
-  width:70px;
+.card-image {
+  width: 70%;
+  height: auto;
+}
+
+/* ===== Responsive Breakpoints ===== */
+
+/* 2 cards per row on screens below 700px */
+@media (max-width: 700px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .card {
+    width: 40vw;               /* bigger so 2 fit nicely */
+    height: calc(40vw * 2);    
+    max-width: 200px;
+    max-height: 400px;
+  }
 }
