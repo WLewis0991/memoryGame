@@ -4,7 +4,7 @@ import Cards from './Components/Card.jsx';
 
 function App() {
   const [gameCards, setGameCards] = useState([]);
-
+  const [score, setScore] = useState (0)
   const [tries, setTries] = useState(0)
   const [attempts, setAttempts] = useState([])
 
@@ -36,9 +36,6 @@ function renderGame() {
   setGameCards(finalCards);
 }
 
-  function increaseTries() {
-    setTries(t=> t + 1)
-  }
 
   useEffect(() => {
     renderGame();
@@ -47,10 +44,10 @@ function renderGame() {
   return (
     <>
     <div className='game-container'>
-      <Scoreboard tries={tries} setTries={setTries}/>
+      <Scoreboard tries={tries} setTries={setTries} score={score}/>
       <div className='card-grid'>
         {gameCards.map((card, index) =>
-          <Cards card={card} key={index} attempts={attempts} setAttempts={setAttempts} setTries={setTries} gameCards={gameCards} setGameCards={setGameCards}/>
+          <Cards card={card} key={index} attempts={attempts} setAttempts={setAttempts} setTries={setTries} gameCards={gameCards} setGameCards={setGameCards} setScore={setScore}/>
         )}
       </div>
     </div>

@@ -1,14 +1,14 @@
 
 export default function Scoreboard(props){
 
-    const {tries, setTries} = props
+    const {tries, score} = props
 
     return(<>
     <div>
         <p>Memory Card Game</p>
     </div>
     <div>
-        <p>Score: 0</p>
+        <p>Score: {score}</p>
     </div>
     <div>
         <p>Turns: {tries}</p>
