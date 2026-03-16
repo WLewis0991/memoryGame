@@ -12,7 +12,7 @@ function renderGame() {
   const cards = [];
 
   // Generate 8 random Pokémon cards, each duplicated
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 4; i++) {
     const card = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${Math.floor(Math.random() * 500)}.png`;
     cards.push(card);
     cards.push(card);
