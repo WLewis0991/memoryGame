@@ -1,6 +1,7 @@
 import { useState, useEffect} from 'react'
 import Scoreboard from './Components/Scoreboard.jsx'
 import Cards from './Components/Card.jsx';
+import Header from './Components/Header.jsx';
 
 function App() {
   const [gameCards, setGameCards] = useState([]);
@@ -11,7 +12,7 @@ function App() {
 function renderGame() {
   const cards = [];
 
-  // Generate 8 random Pokémon cards, each duplicated
+  // Generate random Pokémon cards, each duplicated
   for (let i = 0; i < 4; i++) {
     const card = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${Math.floor(Math.random() * 500)}.png`;
     cards.push(card);
@@ -26,7 +27,7 @@ function renderGame() {
     isMatched: false,
   }));
 
-  // Shuffle function (Fisher–Yates)
+  // Shuffle function
   for (let i = finalCards.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [finalCards[i], finalCards[j]] = [finalCards[j], finalCards[i]];
@@ -44,6 +45,7 @@ function renderGame() {
   return (
     <>
     <div className='game-container'>
+      <Header />
       <Scoreboard tries={tries} setTries={setTries} score={score}/>
       <div className='card-grid'>
         {gameCards.map((card, index) =>

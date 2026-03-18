@@ -2,7 +2,7 @@ export default function Cards(props) {
 
     const { setScore, card, gameCards, setGameCards, attempts, setAttempts, setTries } = props;
     function addAttempt() {
-    // Ignore clicks on flipped or matched cards
+
     if (card.isFlipped || card.isMatched) return;
 
     let newCards = [...gameCards];
@@ -47,7 +47,7 @@ export default function Cards(props) {
     }
 return (
   <div
-    className={`card ${card.isFlipped || card.isMatched ? "flipped" : ""}`}
+className={`card ${card.isFlipped ? "flipped" : ""} ${card.isMatched ? "matched" : ""}`}
     onClick={addAttempt}
   >
     <div className="card-inner">
