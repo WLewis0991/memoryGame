@@ -163,11 +163,12 @@
   }
 }
 
-.play-again-banner{
+.play-again-banner {
   background: none;
   border: none;
   outline: none;
   width: 70vw;
+  position: relative;
 }
 
 dialog{
@@ -198,14 +199,15 @@ dialog[open] {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.reset-button{
-  position: fixed;
-  top: 57%;
-  right: 34%;
-  width: 21.7vw;
-  height: 11vh;
-  border-radius: 18%;
+.reset-button {
+  position: absolute; 
+  top: 69%;           
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;      
+  height: 22%;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  outline: none;
 }
